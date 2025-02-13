@@ -2,22 +2,41 @@
 
 import { useState } from "react";
 import Button from "@/components/Button";
-import Link from "next/link";
-
-const handleNextClick = () => {
-  if (selectedTicket) {
-    <Link />;
-  }
-};
+import { useRouter } from "next/navigation";
 
 const Event = () => {
+  const router = useRouter();
   const [selectedTicket, setSelectedTicket] = useState(null);
+  const [numTickets, setNumTickets] = useState(1);
+  const [showError, setShowError] = useState(false);
 
   const tickets = [
     { type: "REGULAR ACCESS", price: "Free", left: 20 },
     { type: "VIP ACCESS", price: "$50", left: 20 },
     { type: "VVIP ACCSESS", price: "$150", left: 20 },
   ];
+
+  const handleNextClick = () => {
+    if (selectedTicket) {
+      // Store selected ticket info in localStorage
+      localStorage.setItem(
+        "ticketSelection",
+        JSON.stringify({
+          ticketType: selectedTicket,
+          quantity: numTickets,
+        })
+      );
+      router.push("/attendee");
+    } else {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+    }
+  };
+
+  const handleTicketSelect = (ticketType) => {
+    setSelectedTicket(ticketType);
+    setShowError(false);
+  };
 
   return (
     <div className="container">
@@ -81,7 +100,11 @@ const Event = () => {
         {/* Number of Tickets */}
         <div className="mb-4">
           <label className="text-sm font-medium">Number of Tickets</label>
-          <select className="w-full bg-[#09242B] border border-[#07373F] p-2 rounded-md mt-1">
+          <select
+            className="w-full bg-[#09242B] border border-[#07373F] p-2 rounded-md mt-1"
+            value={numTickets}
+            onChange={(e) => setNumTickets(Number(e.target.value))}
+          >
             {[...Array(10).keys()].map((num) => (
               <option key={num + 1} value={num + 1}>
                 {num + 1}
@@ -96,7 +119,7 @@ const Event = () => {
           leftText="Cancel"
           rightText="Next"
           onLeftClick={() => console.log("Cancel clicked")}
-          onRightClick={() => console.log("Next clicked")}
+          onRightClick={handleNextClick}
         />
       </div>
     </div>

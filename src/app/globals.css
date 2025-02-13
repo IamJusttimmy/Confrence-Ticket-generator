@@ -11,7 +11,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* bg-[#041E23] p-5 my-5 rounded-[40px] items-center max-w-[500px]  mx-auto text-white"> */
 .container {
   background-color: #041e23;
   color: white;
@@ -22,14 +21,12 @@ body {
   align-items: center;
 }
 
-/* flex items-center justify-between */
 .top-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* mt-4 p-4 rounded-[32px] border border-[#0e464f] bg-[#08252B] shadow-lg */
 .main-content {
   background-color: #08252b;
   margin-top: 16px;
