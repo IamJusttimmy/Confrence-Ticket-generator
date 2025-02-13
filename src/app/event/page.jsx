@@ -1,6 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/components/Button";
+import Link from "next/link";
+
+const handleNextClick = () => {
+  if (selectedTicket) {
+    <Link />;
+  }
+};
 
 const Event = () => {
   const [selectedTicket, setSelectedTicket] = useState(null);
@@ -12,15 +20,24 @@ const Event = () => {
   ];
 
   return (
-    <div className="bg-[#041E23] p-5 my-5 rounded-[40px] items-center max-w-[500px]  mx-auto text-white">
-      <div className="flex items-center justify-between">
+    <div className="container">
+      <div className="top-container ">
         <p className=" font-jeju ">Ticket Selection</p>
         <p className="font-roboto text-[16px]">step 1/3</p>
       </div>
 
-      <div className="mt-4 p-4 rounded-[32px] border border-[#0e464f] bg-[#08252B] shadow-lg ">
+      <div className="main-content">
         {/* Event Info */}
-        <div className="bg-[#09242B] p-4 rounded-[24px] border border-[#0E464F] mb-4 text-center">
+        <div
+          className="bg-[#09242B] p-4 rounded-[24px] border border-[#0E464F] mb-4 text-center"
+          style={{
+            background: `radial-gradient(
+              103.64% 57.39% at 14.02% 32.06%,
+              rgba(36, 160, 181, 0.2) 0%,
+              rgba(36, 160, 181, 0) 100%
+            ), rgba(10, 12, 17, 0.1)`,
+          }}
+        >
           <h3 className="text-6xl items-center text-[#FAFAFA] font-road">
             Techember Fest"25
           </h3>
@@ -74,14 +91,13 @@ const Event = () => {
         </div>
 
         {/* Buttons */}
-        <div className="items-center grid md:grid-cols-2 gap-4 bg-[#041E23] md:border md:border-[#07373F] rounded-[25px] px-5">
-          <button className=" bg-transparent border border-[#24A0B5] text-[#24A0B5] py-2 rounded-md">
-            Cancel
-          </button>
-          <button className=" bg-[#00B4D8] text-white py-2 rounded-md font-etxralight">
-            Next
-          </button>
-        </div>
+
+        <Button
+          leftText="Cancel"
+          rightText="Next"
+          onLeftClick={() => console.log("Cancel clicked")}
+          onRightClick={() => console.log("Next clicked")}
+        />
       </div>
     </div>
   );
