@@ -61,11 +61,11 @@ const Event = () => {
             Techember Fest"25
           </h3>
           <p className="text-gray-100 text-[12px]">
-            Join us for an unforgettable experience at <br /> [Event Name]!
+            Join us for an unforgettable experience at <br /> Techember Fest"25!
             Secure your spot now.
           </p>
           <p className="text-gray-100 text-[12px] mt-2">
-            📍 [Event Location] || March 15, 2025 | 7:00 PM
+            📍 Lagos, Nigeria || March 15, 2025 | 7:00 PM
           </p>
         </div>
 
@@ -83,7 +83,7 @@ const Event = () => {
                     ? "bg-[#197686] border-[#197686]"
                     : "bg-[#052228] border--[#197686]"
                 } text-left `}
-                onClick={() => setSelectedTicket(ticket.type)}
+                onClick={() => handleTicketSelect(ticket.type)}
               >
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-light">{ticket.type}</span>
@@ -95,6 +95,11 @@ const Event = () => {
               </button>
             ))}
           </div>
+          {showError && (
+            <p className="text-red-500 text-sm mt-2">
+              🔴 Please select a ticket type to continue
+            </p>
+          )}
         </div>
 
         {/* Number of Tickets */}
