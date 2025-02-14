@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/Button";
@@ -7,11 +7,28 @@ import { Progress } from "@/components/ui/progress";
 
 const AttendeeDetails = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    about: "",
+  const [formData, setFormData] = useState(() => {
+    // Check localStorage during initialization
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("formData");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    }
+    return {
+      fullName: "",
+      email: "",
+      imageUrl: "",
+      ticketType: "",
+      ticketQuantity: 1,
+      specialRequest: "",
+    };
   });
+
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
+
   const [errors, setErrors] = useState({});
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);

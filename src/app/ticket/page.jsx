@@ -1,26 +1,44 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import JsBarcode from "jsbarcode";
+import { useState, useEffect, useRef } from "react";
+import Barcode from "react-barcode";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 
-const Ticket = ({ ticketNumber = "1234567890" }) => {
+const Ticket = () => {
   const router = useRouter();
-  const barcodeRef = useRef(null);
+
+  const [storedData, setStoredData] = useState({
+    fullName: "",
+    email: "",
+    imageUrl: "",
+    ticketQuantity: 1,
+    specialRequest: "",
+  });
+
+  const [ticketSelection, setTicketSelection] = useState({
+    ticketType: "",
+    quantity: 1,
+  });
 
   useEffect(() => {
-    if (barcodeRef.current) {
-      JsBarcode(barcodeRef.current, ticketNumber, {
-        format: "CODE128",
-        displayValue: true,
-        lineColor: "#fff",
-        width: 2,
-        height: 50,
-      });
+    if (typeof window !== "undefined") {
+      const savedFormData = localStorage.getItem("formData");
+      const savedTicketType = localStorage.getItem("ticketSelection");
+
+      if (savedFormData) {
+        setStoredData(JSON.parse(savedFormData));
+      }
+      if (savedTicketType) {
+        setTicketSelection(JSON.parse(savedTicketType));
+      }
     }
-  }, [ticketNumber]);
+  }, []);
+
+  const TicketBarcode = () => {
+    <Barcode value="123456789" />;
+  };
 
   const handleBack = (e) => {
     console.log("go back to ticket selection");
@@ -61,7 +79,14 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
           {/* User Image */}
           <div className="flex justify-center my-6">
             <div className="w-24 h-24 rounded-lg overflow-hidden bg-cyan-400/20 border-2 border-cyan-400/50">
-              <div className="w-full h-full bg-[url('/placeholder-avatar.png')] bg-cover bg-center" />
+              <div
+                className="w-full h-full bg-[url('/placeholder-avatar.png')] bg-cover bg-center"
+                style={{
+                  backgroundImage: storedData.imageUrl
+                    ? `url(${storedData.imageUrl})`
+                    : "url('/placeholder-avatar.png')",
+                }}
+              />
             </div>
           </div>
 
@@ -73,7 +98,7 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
                   Enter your name
                 </p>
                 <p className="text-white font-roboto text-[12px] ">
-                  Avi Chukwu
+                  {storedData.fullName || "-"}
                 </p>
               </div>
               <div className="border-l border-b border-[#12464E] pl-1">
@@ -81,20 +106,25 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
                   Enter your email *
                 </p>
                 <p className="text-white font-roboto text-[12px]">
-                  User@email.com
+                  {storedData.email || "-"}
                 </p>
               </div>
               <div className="border-r border-b border-[#12464E]">
                 <p className="text-white font-roboto text-[10px] opacity-[0.33]">
                   Ticket Type:
                 </p>
-                <p className="text-white font-roboto text-[12px]">VIP</p>
+                <p className="text-white font-roboto text-[12px]">
+                  {ticketSelection.ticketType || "-"}
+                </p>
               </div>
               <div className="border-l border-b border-[#12464E] pl-1">
                 <p className="text-white font-roboto text-[10px] opacity-[0.33]">
                   Ticket for:
                 </p>
-                <p className="text-white font-roboto text-[12px]">1</p>
+                <p className="text-white font-roboto text-[12px]">
+                  {" "}
+                  {ticketSelection.quantity || 1}
+                </p>
               </div>
             </div>
 
@@ -103,15 +133,14 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
                 Special request?
               </p>
               <p className="text-white font-roboto text-[12px]">
-                Nil? Or the user's sad story gets this space, max of three rows.
+                {storedData.specialRequest || "Nil"}
               </p>
             </div>
           </div>
 
           {/* Barcode */}
           <div className="mt-6 flex justify-center">
-            <svg ref={barcodeRef} className="mx-auto" />
-
+            {TicketBarcode}
             {/* <p className="mt-2 text-sm">Ticket No: {ticketNumber}</p> */}
           </div>
         </div>
