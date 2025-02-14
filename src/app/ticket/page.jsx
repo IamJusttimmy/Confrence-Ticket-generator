@@ -36,10 +36,6 @@ const Ticket = () => {
     }
   }, []);
 
-  const TicketBarcode = () => {
-    <Barcode value="123456789" />;
-  };
-
   const handleBack = (e) => {
     console.log("go back to ticket selection");
     router.push("/attendee");
