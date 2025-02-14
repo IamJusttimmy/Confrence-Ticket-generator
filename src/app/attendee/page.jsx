@@ -192,6 +192,7 @@ const AttendeeDetails = () => {
               id="email"
               value={formData.email}
               onChange={handleInputChange}
+              placeholder="hello@avioflagos.io"
               className={`required ${errors.email ? "border-red-500" : ""}`}
             />
             <p className={`text-hint ${errors.email ? "error" : ""}`}>
