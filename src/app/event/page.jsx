@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { Progress } from "@/components/ui/progress";
 
 const Event = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const Event = () => {
         <p className=" font-jeju ">Ticket Selection</p>
         <p className="font-roboto text-[16px]">step 1/3</p>
       </div>
+      <Progress value={33} />
 
       <div className="main-content">
         {/* Event Info */}

@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/Button";
+import { Progress } from "@/components/ui/progress";
 
 const AttendeeDetails = () => {
   const router = useRouter();
@@ -115,6 +116,8 @@ const AttendeeDetails = () => {
         <p>Attendee Details</p>
         <p>2/3</p>
       </div>
+      <Progress value={70} />
+
       <div className="main-content">
         <form onSubmit={handleSubmit} id="ticket-form">
           <div className="form-item upload p-[24px] bg-[#052228] border-[#07373f]">

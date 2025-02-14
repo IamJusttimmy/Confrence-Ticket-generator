@@ -5,6 +5,7 @@ import JsBarcode from "jsbarcode";
 import Image from "next/image";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { Progress } from "@/components/ui/progress";
 
 const Ticket = ({ ticketNumber = "1234567890" }) => {
   const router = useRouter();
@@ -33,6 +34,8 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
         <p>Ready</p>
         <p>3/3</p>
       </div>
+      <Progress value={100} />
+
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center">
           <h2 className="text-[32px] font-bold">Your Ticket is Booked!</h2>
