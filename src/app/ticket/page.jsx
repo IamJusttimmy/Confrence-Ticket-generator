@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import JsBarcode from "jsbarcode";
-import Image from "next/image";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
@@ -36,16 +35,15 @@ const Ticket = ({ ticketNumber = "1234567890" }) => {
       </div>
       <Progress value={100} />
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         <div className="flex flex-col items-center">
           <h2 className="text-[32px] font-bold">Your Ticket is Booked!</h2>
           <p className="text-[16px] text-gray-300 font-light font-roboto">
-            Check your email for a copy or you can <bold>download</bold>
+            Check your email for a copy or you can{" "}
+            <span className="font-semibold">download</span>
           </p>
         </div>
-        {/* Ticket Container */}
         <div className=" max-w-[300px] bg-[rgba(3, 30, 33, 0.10)] border border-[#24A0B5] rounded-[16px] my-6 p-[14px]">
-          {/* Ticket Title */}
           <h3 className="flex text-[34px] items-center justify-center text-[#FAFAFA] font-road">
             Techember Fest '25
           </h3>

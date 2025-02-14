@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Roboto } from "next/font/google";
+import Navbar from "@/components/Navbar";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased min-h-screen bg-gradient-to-b from-[#02191D] from-0% via-[#02191D] via-85% to-[#24A0B5] to-100%`}
       >
+        <Navbar />
         {children}
       </body>
     </html>

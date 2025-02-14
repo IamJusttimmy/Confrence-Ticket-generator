@@ -1,9 +1,5 @@
-import Image from "next/image";
+import Event from "./event/page";
 
 export default function Home() {
-  return (
-    <div>
-      <h2>page</h2>
-    </div>
-  );
+  return <Event />;
 }
