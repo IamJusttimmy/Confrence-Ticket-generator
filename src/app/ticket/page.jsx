@@ -140,7 +140,7 @@ const Ticket = () => {
 
           {/* Barcode */}
           <div className="mt-6 flex justify-center">
-            {TicketBarcode}
+            {}
             {/* <p className="mt-2 text-sm">Ticket No: {ticketNumber}</p> */}
           </div>
         </div>
