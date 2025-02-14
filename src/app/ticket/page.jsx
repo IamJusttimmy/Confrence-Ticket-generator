@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Barcode from "react-barcode";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
