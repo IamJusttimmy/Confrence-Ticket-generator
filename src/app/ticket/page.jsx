@@ -37,7 +37,7 @@ const Ticket = () => {
 
   const handleBack = (e) => {
     console.log("go back to ticket selection");
-    router.push("/attendee");
+    router.push("/");
   };
 
   return (
@@ -141,8 +141,8 @@ const Ticket = () => {
         </div>
       </div>
       <Button
-        leftText="Back"
-        rightText="Get My Ticket"
+        leftText="Book Another Ticket"
+        rightText="Download Ticket"
         onLeftClick={handleBack}
         onRightClick={() => {
           console.log("CLicked Download");
