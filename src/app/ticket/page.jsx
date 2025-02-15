@@ -37,6 +37,10 @@ const Ticket = () => {
   }, []);
 
   const handleBack = (e) => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("formData");
+      localStorage.removeItem("ticketSelection");
+    }
     console.log("go back to ticket selection");
     router.push("/");
   };
