@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
 
 const Ticket = () => {
   const router = useRouter();
@@ -128,15 +129,25 @@ const Ticket = () => {
                 Special request?
               </p>
               <p className="text-white font-roboto text-[12px]">
-                {storedData.specialRequest || "Nil"}
+                {storedData.about || "Nil"}
               </p>
             </div>
           </div>
 
           {/* Barcode */}
-          <div className="mt-6 flex justify-center">
-            {}
-            {/* <p className="mt-2 text-sm">Ticket No: {ticketNumber}</p> */}
+          <div className="mt-6 grid justify-center">
+            <Image
+              src="/Barcode.png"
+              alt="barcode"
+              className="items-center"
+              width={150}
+              height={70}
+            />
+            <div className="flex items-center justify-between">
+              <p>1</p>
+              <p>234567</p>
+              <p>891026</p>
+            </div>
           </div>
         </div>
       </div>

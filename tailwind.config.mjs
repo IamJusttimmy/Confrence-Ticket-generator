@@ -10,7 +10,7 @@ export default {
       colors: {},
       fontFamily: {
         roboto: ["var(--font-roboto)", "sans-serif"],
-        jeju: ["var(--font-jeju), serif"],
+        jeju: ["var(--font-jeju)", "serif"],
         road: ['"Road Rage"', "cursive"],
       },
     },
